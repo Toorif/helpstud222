@@ -1,0 +1,17 @@
+[
+  {
+    "token": "aeefd6795ac8d21dcd1a88ebf70dc9b8805661cead52475d",
+    "userId": 3,
+    "createdAt": "2026-04-16T09:29:42.318802+00:00"
+  },
+  {
+    "token": "b93311745564ce5a4c2f1952714b66f1307f0d648dae7a0d",
+    "userId": 1,
+    "createdAt": "2026-04-18T16:37:40.890410+00:00"
+  },
+  {
+    "token": "c7a188310023f0d7d0e0f10a0b58607be51aaa13aeb0bb7b",
+    "userId": 4,
+    "createdAt": "2026-04-23T12:25:43.963906+00:00"
+  }
+]

@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "Артур",
+    "email": "artur.bykov.00@gmail.com",
+    "passwordHash": "fbf4fce5a1e7d2226ea321407745424eb3df9c3aebf6f6c345f6a2797da6977c",
+    "createdAt": "2026-04-16T09:09:30.771416+00:00"
+  },
+  {
+    "id": 2,
+    "name": "Toorif",
+    "email": "artur.bykov.2022@inbox.ru",
+    "passwordHash": "a2f86618366006ba8b2cf94f460e1cf48a22eaf6e56a25ffbdc04690449d3ed3",
+    "createdAt": "2026-04-16T09:10:52.268481+00:00"
+  },
+  {
+    "id": 3,
+    "name": "Chat User",
+    "email": "chat-test-ee5c79f2@example.com",
+    "passwordHash": "fcf730b6d95236ecd3c9fc2d92d7b6b2bb061514961aec041d6c7a7192f592e4",
+    "createdAt": "2026-04-16T09:29:42.317526+00:00"
+  },
+  {
+    "id": 4,
+    "name": "Files User",
+    "email": "chat-files-233bdbfd@example.com",
+    "passwordHash": "fcf730b6d95236ecd3c9fc2d92d7b6b2bb061514961aec041d6c7a7192f592e4",
+    "createdAt": "2026-04-23T12:25:43.954191+00:00"
+  }
+]

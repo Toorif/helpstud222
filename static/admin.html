@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Админ-панель заявок и отзывов | Help-student</title>
+  <meta name="description" content="Админ-панель Help-student для просмотра заявок, фильтрации обращений, работ и модерации отзывов.">
+  <script>
+    (function () {
+      try {
+        if (window.localStorage.getItem("adminAuth")) {
+          document.documentElement.classList.add("admin-authenticated");
+        }
+      } catch (error) {
+        console.error("Unable to restore admin auth state", error);
+      }
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="admin-body">
+  <div class="page-shell admin-shell">
+    <header class="site-header">
+      <a class="brand" href="/">
+        <span class="brand-mark">HS</span>
+        <span class="brand-text">Help-student</span>
+      </a>
+      <nav class="site-nav admin-nav is-open">
+        <a href="/">На сайт</a>
+        <a href="/admin/chats">Чаты</a>
+      </nav>
+    </header>
+
+    <main class="admin-main">
+      <section class="admin-hero">
+        <div>
+          <p class="eyebrow">Админ-панель</p>
+          <h1>Заявки и фильтры</h1>
+          <p class="hero-text">Войдите под данными администратора, затем ищите обращения по тексту, типу работы и дате создания.</p>
+        </div>
+      </section>
+
+      <section class="admin-layout">
+        <aside class="admin-sidebar">
+          <div class="admin-sidebar-intro">
+            <p class="eyebrow">Управление</p>
+            <h2>Доступ и фильтры</h2>
+            <p class="admin-sidebar-text">Сначала авторизация, затем быстрый отбор нужных заявок по содержимому, типу работы и дате.</p>
+          </div>
+          <form class="admin-login" id="admin-login-form" autocomplete="on">
+            <h2>Авторизация</h2>
+            <label>
+              Логин
+              <input type="text" name="username" placeholder="admin" required>
+            </label>
+            <label>
+              Пароль
+              <input type="password" name="password" placeholder="Введите пароль" required>
+            </label>
+            <div class="admin-actions">
+              <button class="button button-primary" type="submit">Войти</button>
+              <button class="button button-secondary" id="logout-button" type="button">Выйти</button>
+            </div>
+            <p class="form-status" id="admin-status" aria-live="polite"></p>
+          </form>
+
+          <section class="admin-session" id="admin-session">
+            <p class="eyebrow">Сессия</p>
+            <h2>Вы авторизованы</h2>
+            <p class="admin-sidebar-text">Активный пользователь: <strong id="session-username">admin</strong></p>
+            <div class="admin-actions">
+              <button class="button button-secondary" id="change-user-button" type="button">Сменить аккаунт</button>
+            </div>
+          </section>
+
+          <form class="admin-filters" id="filters-form">
+            <div class="admin-panel-head">
+              <div>
+                <p class="eyebrow">Фильтры</p>
+                <h2>Поиск заявок</h2>
+              </div>
+            </div>
+            <label>
+              Поиск
+              <input type="search" name="q" placeholder="Имя, контакт, описание">
+            </label>
+            <label>
+              Тип работы
+              <select name="taskType" id="task-type-filter">
+                <option value="">Все типы</option>
+              </select>
+            </label>
+            <label>
+              Дата от
+              <input type="date" name="dateFrom">
+            </label>
+            <label>
+              Дата до
+              <input type="date" name="dateTo">
+            </label>
+            <div class="admin-actions">
+              <button class="button button-primary" type="submit">Применить</button>
+              <button class="button button-secondary" id="reset-filters-button" type="button">Сбросить</button>
+            </div>
+          </form>
+        </aside>
+
+        <section class="admin-panel">
+          <div class="admin-panel-head admin-panel-head-wrap">
+            <div>
+              <p class="eyebrow">Заявки</p>
+              <h2>Список обращений</h2>
+              <p class="admin-panel-subtitle">Новые заявки идут сверху. Удаление выполняется сразу после подтверждения.</p>
+            </div>
+            <div class="admin-actions">
+              <div class="admin-counter" id="admin-counter">0 заявок</div>
+              <button class="button button-secondary" id="refresh-button" type="button">Обновить</button>
+            </div>
+          </div>
+          <div class="admin-empty" id="admin-empty">Войдите, чтобы увидеть заявки.</div>
+          <div class="request-list" id="request-list"></div>
+
+          <div class="admin-panel-head admin-panel-head-wrap reviews-admin-head">
+            <div>
+              <p class="eyebrow">Работы на сайте</p>
+              <h2>Размещение работ</h2>
+              <p class="admin-panel-subtitle">Добавляйте примеры работ, которые студент увидит в блоке «Работы» на главной странице.</p>
+            </div>
+            <div class="admin-actions">
+              <button class="button button-secondary" id="refresh-works-button" type="button">Обновить работы</button>
+            </div>
+          </div>
+          <form class="work-admin-form" id="work-admin-form">
+            <input type="hidden" name="id">
+            <label>
+              Название
+              <input type="text" name="title" placeholder="Например: Управление персоналом в малом бизнесе" required>
+            </label>
+            <label>
+              Тип работы
+              <input type="text" name="workType" placeholder="Курсовая, ВКР, реферат" required>
+            </label>
+            <label>
+              Предмет
+              <input type="text" name="subject" placeholder="Менеджмент, право, экономика" required>
+            </label>
+            <label>
+              Оригинальность
+              <input type="text" name="originality" placeholder="Например: 78% Антиплагиат.ВУЗ">
+            </label>
+            <label class="full-width">
+              Теги
+              <input type="text" name="tags" placeholder="ГОСТ, практика, презентация">
+            </label>
+            <label class="full-width">
+              Описание
+              <textarea name="description" rows="4" placeholder="Кратко опишите содержание, объём и особенности работы" required></textarea>
+            </label>
+            <label class="full-width work-file-field">
+              Файл работы
+              <input id="work-file-input" type="file" name="workFile">
+              <span class="attachment-name" id="work-attachment-name">Файл не выбран</span>
+            </label>
+            <label class="work-published-toggle">
+              <input type="checkbox" name="published" checked>
+              Опубликовано на сайте
+            </label>
+            <div class="admin-actions full-width">
+              <button class="button button-primary" type="submit">Сохранить работу</button>
+              <button class="button button-secondary" id="reset-work-form-button" type="button">Очистить</button>
+            </div>
+          </form>
+          <div class="admin-empty" id="works-empty">Войдите, чтобы увидеть работы.</div>
+          <div class="work-admin-list" id="work-admin-list"></div>
+
+          <div class="admin-panel-head admin-panel-head-wrap reviews-admin-head">
+            <div>
+              <p class="eyebrow">Отзывы</p>
+              <h2>Модерация отзывов</h2>
+              <p class="admin-panel-subtitle">Новые отзывы сначала попадают сюда. Только после одобрения они появляются на сайте.</p>
+            </div>
+            <div class="admin-actions">
+              <select class="admin-select" id="review-status-filter">
+                <option value="">Все статусы</option>
+                <option value="pending">На модерации</option>
+                <option value="approved">Одобрено</option>
+                <option value="rejected">Отклонено</option>
+              </select>
+              <button class="button button-secondary" id="refresh-reviews-button" type="button">Обновить отзывы</button>
+            </div>
+          </div>
+          <div class="admin-empty" id="reviews-empty">Войдите, чтобы увидеть отзывы.</div>
+          <div class="review-admin-list" id="review-admin-list"></div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <script src="/admin.js"></script>
+</body>
+</html>

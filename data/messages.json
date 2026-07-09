@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "userId": 1,
+    "sender": "user",
+    "text": "Привет",
+    "createdAt": "2026-04-18T16:37:46.362002+00:00",
+    "readByAdmin": true,
+    "readByUser": true
+  },
+  {
+    "id": 2,
+    "userId": 1,
+    "sender": "admin",
+    "text": "Чё, надо?",
+    "createdAt": "2026-04-18T16:38:06.242047+00:00",
+    "readByAdmin": true,
+    "readByUser": true
+  },
+  {
+    "id": 3,
+    "userId": 1,
+    "sender": "user",
+    "text": "",
+    "createdAt": "2026-04-18T16:38:40.891037+00:00",
+    "readByAdmin": true,
+    "readByUser": true,
+    "attachment": {
+      "name": "Diplomnaya_rabota_Avkhadeev (2).docx",
+      "contentType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "path": "/uploads/c69f856f94f7cfd118f6bb94.docx",
+      "size": 839083
+    }
+  },
+  {
+    "id": 4,
+    "userId": 1,
+    "sender": "admin",
+    "text": "?",
+    "createdAt": "2026-04-18T16:38:55.384776+00:00",
+    "readByAdmin": true,
+    "readByUser": true
+  },
+  {
+    "id": 5,
+    "userId": 4,
+    "sender": "user",
+    "text": "Файл от пользователя",
+    "createdAt": "2026-04-23T12:25:44.059936+00:00",
+    "readByAdmin": false,
+    "readByUser": true,
+    "attachment": {
+      "name": "user-note.txt",
+      "contentType": "text/plain",
+      "path": "/uploads/c32b0b963a53e8a8edd3caf6.txt",
+      "size": 9
+    }
+  },
+  {
+    "id": 6,
+    "userId": 4,
+    "sender": "admin",
+    "text": "Файл от администратора",
+    "createdAt": "2026-04-23T12:25:44.123590+00:00",
+    "readByAdmin": true,
+    "readByUser": true,
+    "attachment": {
+      "name": "admin-note.txt",
+      "contentType": "text/plain",
+      "path": "/uploads/a5461de0e1b34cb06e7d025d.txt",
+      "size": 10
+    }
+  }
+]

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Личный чат с администратором | Help-student</title>
+  <meta name="description" content="Личный чат пользователя с администратором Help-student: переписка по заказу, уточнения и обмен файлами.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="/">
+        <span class="brand-mark">HS</span>
+        <span class="brand-text">Help-student</span>
+      </a>
+      <nav class="site-nav is-open">
+        <a href="/">На сайт</a>
+      </nav>
+    </header>
+
+    <main class="chat-page-main">
+      <section class="admin-hero">
+        <div>
+          <p class="eyebrow">Личный чат</p>
+          <h1>Переписка с администратором</h1>
+          <p class="hero-text">После входа вы общаетесь только в одном личном чате. Здесь можно писать сообщения и отправлять файлы.</p>
+        </div>
+      </section>
+
+      <section class="user-chat user-chat-page" id="user-chat-panel">
+        <div class="user-chat-head">
+          <div>
+            <p class="eyebrow">Чат</p>
+            <h3>Диалог с администратором</h3>
+            <p class="user-chat-subtitle">Вы вошли как <strong id="user-name">Пользователь</strong></p>
+          </div>
+          <button class="button button-secondary" id="user-logout-button" type="button">Выйти</button>
+        </div>
+        <div class="chat-messages" id="user-chat-messages">
+          <div class="chat-empty">Загрузка переписки...</div>
+        </div>
+        <form class="chat-form" id="user-chat-form">
+          <div class="chat-compose-row">
+            <label class="attachment-button" for="chat-file-input" title="Прикрепить файл">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M16.5 6.5v8.75a4.25 4.25 0 1 1-8.5 0V5.75a2.75 2.75 0 0 1 5.5 0v8.5a1.25 1.25 0 1 1-2.5 0V7h-1.5v7.25a2.75 2.75 0 1 0 5.5 0v-8.5a4.25 4.25 0 0 0-8.5 0v9.5a5.75 5.75 0 1 0 11.5 0V6.5h-1.5Z"/>
+              </svg>
+            </label>
+            <input class="is-hidden" id="chat-file-input" type="file">
+            <textarea name="text" rows="4" placeholder="Напишите сообщение администратору"></textarea>
+          </div>
+          <div class="chat-compose-meta">
+            <span class="attachment-name" id="attachment-name">Файл не выбран</span>
+            <button class="button button-primary" type="submit">Отправить</button>
+          </div>
+        </form>
+        <p class="form-status" id="chat-status" aria-live="polite"></p>
+      </section>
+    </main>
+  </div>
+
+  <script src="/chat.js"></script>
+</body>
+</html>

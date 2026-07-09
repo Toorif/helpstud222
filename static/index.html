@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help-student | Помощь со студенческими работами</title>
+  <meta
+    name="description"
+    content="Help-student: помощь с курсовыми, ВКР, рефератами, отчётами по практике, презентациями, повышением оригинальности и личным чатом с администратором."
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="#hero">
+        <span class="brand-mark">HS</span>
+        <span class="brand-text">Help-student</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="site-nav" id="site-nav">
+        <a href="#services">Услуги</a>
+        <a href="#why">Почему я</a>
+        <a href="#process">Процесс</a>
+        <a href="#portfolio">Работы</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Заказать</a>
+      </nav>
+      <div class="header-auth">
+        <button class="button button-secondary header-auth-open" id="open-login-button" type="button">Войти</button>
+        <button class="button button-primary header-auth-open" id="open-register-button" type="button">Регистрация</button>
+        <div class="auth-popover is-hidden" id="auth-popover">
+          <div class="account-tabs">
+            <button class="account-tab is-active" type="button" data-auth-tab="login">Вход</button>
+            <button class="account-tab" type="button" data-auth-tab="register">Регистрация</button>
+            <button class="account-tab" type="button" data-auth-tab="reset">Пароль</button>
+          </div>
+
+          <form class="account-form" id="login-form">
+            <label>
+              Почта
+              <input type="email" name="email" placeholder="you@example.com" required>
+            </label>
+            <label>
+              Пароль
+              <input type="password" name="password" placeholder="Минимум 6 символов" required>
+            </label>
+            <button class="button button-primary" type="submit">Войти</button>
+            <button class="auth-inline-link" type="button" data-auth-tab="reset">Забыли пароль?</button>
+          </form>
+
+          <form class="account-form is-hidden" id="register-form">
+            <label>
+              Имя
+              <input type="text" name="name" placeholder="Как к вам обращаться" required>
+            </label>
+            <label>
+              Почта
+              <input type="email" name="email" placeholder="you@example.com" required>
+            </label>
+            <label>
+              Пароль
+              <input type="password" name="password" placeholder="Минимум 6 символов" required>
+            </label>
+            <button class="button button-primary" type="submit">Создать аккаунт</button>
+          </form>
+
+          <div class="account-form is-hidden" id="reset-panel">
+            <form class="account-form" id="reset-request-form">
+              <label>
+                Почта
+                <input type="email" name="email" placeholder="you@example.com" required>
+              </label>
+              <button class="button button-secondary" type="submit">Отправить код</button>
+            </form>
+            <form class="account-form" id="reset-confirm-form">
+              <label>
+                Почта
+                <input type="email" name="email" placeholder="you@example.com" required>
+              </label>
+              <label>
+                Код
+                <input type="text" name="code" placeholder="6 цифр" required>
+              </label>
+              <label>
+                Новый пароль
+                <input type="password" name="password" placeholder="Минимум 6 символов" required>
+              </label>
+              <button class="button button-primary" type="submit">Сменить пароль</button>
+            </form>
+          </div>
+
+          <p class="form-status" id="auth-status" aria-live="polite"></p>
+        </div>
+        <div class="header-session is-hidden" id="header-session">
+          <button class="button button-secondary profile-toggle" id="profile-toggle-button" type="button" aria-expanded="false" aria-controls="profile-menu">
+            <span class="profile-avatar" id="profile-avatar" aria-hidden="true">П</span>
+            <span class="header-session-name" id="header-session-name">Пользователь</span>
+            <span class="profile-toggle-caret" aria-hidden="true">▾</span>
+          </button>
+          <div class="profile-menu is-hidden" id="profile-menu">
+            <a class="profile-menu-link" id="open-chat-button" href="/chat">Чат</a>
+            <span class="profile-menu-divider" aria-hidden="true"></span>
+            <button class="profile-menu-link profile-menu-button" id="open-change-password-button" type="button">Сменить пароль</button>
+            <span class="profile-menu-divider" aria-hidden="true"></span>
+            <button class="profile-menu-link profile-menu-button" id="logout-button" type="button">Выйти</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Помощь студентам с учебными работами</p>
+          <h1>Аккуратные студенческие работы без лишней суеты.</h1>
+          <p class="hero-text">
+            Помогаю подготовить курсовую, ВКР, реферат, отчёт по практике или презентацию:
+            от структуры и оформления до правок после замечаний преподавателя.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#contact">Оставить заявку</a>
+            <a class="button button-secondary" href="#portfolio">Посмотреть работы</a>
+          </div>
+          <ul class="hero-points">
+            <li>Сроки обсуждаются до начала</li>
+            <li>Оформление по методичке</li>
+            <li>Диалог и файлы в личном чате</li>
+          </ul>
+        </div>
+        <div class="hero-card">
+          <div class="paper-preview" aria-hidden="true">
+            <div class="paper-preview-head">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="paper-preview-lines">
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+            </div>
+            <div class="paper-preview-footer">
+              <b>ГОСТ</b>
+              <b>Антиплагиат</b>
+            </div>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">120+</span>
+            <span class="stat-label">работ и доработок по учебным задачам за последний сезон</span>
+          </div>
+          <div class="stat-grid">
+            <article>
+              <span>70-85%</span>
+              <p>типовой диапазон после глубокой редактуры</p>
+            </article>
+            <article>
+              <span>24/7</span>
+              <p>чат для уточнений, файлов и правок</p>
+            </article>
+          </div>
+          <div class="quote-card">
+            <p>"Главная цель - сделать материал понятным, оформленным и готовым к спокойной сдаче."</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="services section" id="services">
+        <div class="section-heading">
+          <p class="eyebrow">Что можно заказать</p>
+          <h2>Можно заказать работу с нуля или привести готовый текст в порядок.</h2>
+        </div>
+        <div class="service-grid">
+          <article class="service-card">
+            <h3>ВКР и дипломы</h3>
+            <p>План, главы, введение, заключение, источники и доработка по замечаниям руководителя.</p>
+          </article>
+          <article class="service-card">
+            <h3>Курсовые работы</h3>
+            <p>Тема, структура, теория, практическая часть, сноски и оформление по требованиям кафедры.</p>
+          </article>
+          <article class="service-card">
+            <h3>Рефераты, эссе и статьи</h3>
+            <p>Короткие учебные тексты с ясной логикой, нормальным стилем и аккуратным оформлением.</p>
+          </article>
+          <article class="service-card">
+            <h3>Отчёты и практика</h3>
+            <p>Дневники, отчёты, характеристики, приложения и оформление под шаблон учебного заведения.</p>
+          </article>
+          <article class="service-card">
+            <h3>Контрольные и презентации</h3>
+            <p>Практические задания, ответы на вопросы, презентации, доклады и материалы к выступлению.</p>
+          </article>
+          <article class="service-card accent-card">
+            <h3>Антиплагиат и доработки</h3>
+            <p>Редактура, повышение оригинальности, исправление замечаний и финальная подготовка к сдаче.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="why section" id="why">
+        <div class="section-heading">
+          <p class="eyebrow">Почему выбирают меня</p>
+          <h2>Всё строится вокруг ваших требований, срока и понятной связи.</h2>
+        </div>
+        <div class="why-grid">
+          <article class="why-card">
+            <span>01</span>
+            <h3>Личный чат после заявки</h3>
+            <p>После отправки заявки открывается диалог, где удобно уточнять детали и прикреплять материалы.</p>
+          </article>
+          <article class="why-card">
+            <span>02</span>
+            <h3>Ориентация на методичку</h3>
+            <p>Сначала разбираются методичка, объём, оформление, источники и критерии проверки.</p>
+          </article>
+          <article class="why-card">
+            <span>03</span>
+            <h3>Честная оценка сроков</h3>
+            <p>Срок и объём согласуются заранее, чтобы не обещать невозможное в последний момент.</p>
+          </article>
+          <article class="why-card">
+            <span>04</span>
+            <h3>Правки после замечаний</h3>
+            <p>Замечания преподавателя можно прислать в чат и сразу согласовать нужные изменения.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="process section" id="process">
+        <div class="section-heading">
+          <p class="eyebrow">Как идёт работа</p>
+          <h2>Понятный маршрут от заявки до финального файла.</h2>
+        </div>
+        <div class="process-grid">
+          <article>
+            <span>01</span>
+            <h3>Заявка</h3>
+            <p>Вы указываете тему, предмет, срок, тип проверки и прикрепляете методичку или исходные файлы.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Уточнение</h3>
+            <p>В чате обсуждаются детали: объём, требования, процент оригинальности, стоимость и формат сдачи.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Подготовка</h3>
+            <p>Материал пишется или дорабатывается, приводится к структуре и оформляется под требования.</p>
+          </article>
+          <article>
+            <span>04</span>
+            <h3>Передача</h3>
+            <p>Готовый файл отправляется в чат. При необходимости отдельно обсуждаются правки.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="portfolio section" id="portfolio">
+        <div class="section-heading">
+          <p class="eyebrow">Работы</p>
+          <h2>Здесь можно посмотреть примеры опубликованных работ.</h2>
+        </div>
+        <div class="portfolio-grid" id="works-list">
+          <article class="portfolio-card">
+            <p class="portfolio-type">Курсовая</p>
+            <h3>Авторское право в цифровой среде</h3>
+            <p>В карточке студент увидит направление, тип работы, оригинальность и краткое описание.</p>
+          </article>
+          <article class="portfolio-card">
+            <p class="portfolio-type">ВКР</p>
+            <h3>Государственное управление и цифровизация услуг</h3>
+            <p>Раздел пополняется через админ-панель и помогает быстрее понять формат результата.</p>
+          </article>
+          <article class="portfolio-card">
+            <p class="portfolio-type">Примеры</p>
+            <h3>Каталог пополняется</h3>
+            <p>Новые карточки появятся здесь после публикации в админ-панели.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="reviews section" id="reviews">
+        <div class="section-heading">
+          <p class="eyebrow">Отзывы</p>
+          <h2>Отзывы студентов</h2>
+        </div>
+        <div class="reviews-layout">
+          <div class="review-grid" id="reviews-list">
+            <article class="review-card">
+              <p>Сейчас здесь появятся одобренные отзывы.</p>
+              <span>Модерация включена</span>
+            </article>
+          </div>
+          <form class="review-form" id="review-form">
+            <h3>Оставить отзыв</h3>
+            <label>
+              Имя
+              <input type="text" name="name" placeholder="Как вас представить" required>
+            </label>
+            <label>
+              Подпись
+              <input type="text" name="role" placeholder="Например: Студент 4 курс, МГУ" required>
+            </label>
+            <label class="full-width">
+              Текст отзыва
+              <textarea name="text" rows="6" placeholder="Что было полезно, как прошла работа, что понравилось в процессе" required></textarea>
+            </label>
+            <button class="button button-primary full-width" type="submit">Отправить отзыв</button>
+            <p class="form-status" id="review-status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+
+      <section class="faq section" id="faq">
+        <div class="section-heading">
+          <p class="eyebrow">FAQ</p>
+          <h2>Короткие ответы перед оформлением заявки.</h2>
+        </div>
+        <div class="faq-list">
+          <article class="faq-item">
+            <button class="faq-question" type="button">
+              <span>Какие данные нужны для расчёта стоимости?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Укажите тип работы, тему, предмет, объём, дедлайн, требования преподавателя и нужную проверку антиплагиата.</p>
+            </div>
+          </article>
+          <article class="faq-item">
+            <button class="faq-question" type="button">
+              <span>Можно ли заказать не всю работу, а только часть?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Да. Можно заказать план, одну главу, введение, заключение, список источников, презентацию, доклад или правки по замечаниям.</p>
+            </div>
+          </article>
+          <article class="faq-item">
+            <button class="faq-question" type="button">
+              <span>Как проходит проверка на антиплагиат?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Вы выбираете систему проверки в заявке. Нужный процент и реалистичный способ его достижения обсуждаются в чате.</p>
+            </div>
+          </article>
+          <article class="faq-item">
+            <button class="faq-question" type="button">
+              <span>Что происходит после отправки заявки?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Сайт создаёт или открывает аккаунт, отправляет заявку администратору и переводит вас в личный чат.</p>
+            </div>
+          </article>
+          <article class="faq-item">
+            <button class="faq-question" type="button">
+              <span>Можно ли прикрепить методичку или файл?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Да. Файл можно прикрепить прямо в форме заявки, а дополнительные материалы отправить позже в личном чате.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="contact section" id="contact">
+        <div class="contact-panel">
+          <div class="contact-copy">
+            <p class="eyebrow">Форма заявки</p>
+            <h2>Опишите задачу - дальше всё продолжится в личном чате.</h2>
+            <p>
+              Укажите тему, срок, тип работы и прикрепите файл для администратора, если есть методичка,
+              задание или готовый текст. После отправки заявка появится в чате.
+            </p>
+          </div>
+          <form class="contact-form" id="request-form">
+            <label>
+              Имя
+              <input type="text" name="name" placeholder="Как к вам обращаться" required>
+            </label>
+            <label>
+              Контакт
+              <input type="text" name="contact" placeholder="Telegram, WhatsApp или e-mail" required>
+            </label>
+            <label>
+              Тип работы
+              <select name="taskType" required>
+                <option value="">Выберите тип</option>
+                <option value="ВКР">ВКР</option>
+                <option value="Курсовая">Курсовая</option>
+                <option value="Реферат">Реферат</option>
+                <option value="Статья">Статья</option>
+                <option value="Отчёт по практике">Отчёт по практике</option>
+                <option value="Контрольная">Контрольная</option>
+                <option value="Презентация">Презентация</option>
+                <option value="Редактура">Редактура</option>
+                <option value="Оригинальность">Повышение оригинальности</option>
+              </select>
+            </label>
+            <label>
+              Тип антиплагиата
+              <select name="antiPlagiarism" required>
+                <option value="">Выберите проверку</option>
+                <option value="Антиплагиат.ВУЗ">Антиплагиат.ВУЗ</option>
+                <option value="Антиплагиат.ру">Антиплагиат.ру</option>
+                <option value="Etxt / Text.ru">Etxt / Text.ru</option>
+                <option value="Не требуется">Не требуется</option>
+                <option value="Уточнить в чате">Уточнить в чате</option>
+              </select>
+            </label>
+            <label>
+              Дедлайн
+              <input type="text" name="deadline" placeholder="Например: до 15 апреля" required>
+            </label>
+            <label class="request-file-field">
+              Файл для администратора
+              <input id="request-file-input" type="file" name="attachmentFile">
+              <span class="attachment-name" id="request-attachment-name">Файл для администратора не выбран</span>
+            </label>
+            <label class="request-details-field">
+              Описание задачи
+              <textarea name="details" rows="5" placeholder="Кратко: тема, предмет, объём, требования, процент оригинальности, комментарии преподавателя" required></textarea>
+            </label>
+            <div class="request-auth-box full-width" id="request-auth-box">
+              <div>
+                <p class="eyebrow">Авторизация</p>
+                <h3>Для чата по заявке</h3>
+                <p>Почта и пароль откроют личный чат и сохранят историю переписки.</p>
+              </div>
+              <label>
+                Почта для аккаунта
+                <input type="email" name="authEmail" placeholder="you@example.com">
+              </label>
+              <label>
+                Пароль
+                <input type="password" name="authPassword" placeholder="Минимум 6 символов">
+              </label>
+            </div>
+            <button class="button button-primary full-width" type="submit">Отправить заявку</button>
+            <p class="form-status" id="form-status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+
+      <section class="account section is-hidden" id="account">
+        <div class="section-heading">
+          <p class="eyebrow">Личный кабинет</p>
+          <h2>Авторизация и чат с администратором.</h2>
+        </div>
+        <div class="account-layout">
+          <div class="account-auth" id="account-auth">
+            <div class="account-tabs">
+              <button class="account-tab is-active" type="button" data-auth-tab="login">Вход</button>
+              <button class="account-tab" type="button" data-auth-tab="register">Регистрация</button>
+            </div>
+
+            <form class="account-form" id="login-form">
+              <label>
+                Почта
+                <input type="email" name="email" placeholder="you@example.com" required>
+              </label>
+              <label>
+                Пароль
+                <input type="password" name="password" placeholder="Минимум 6 символов" required>
+              </label>
+              <button class="button button-primary" type="submit">Войти</button>
+            </form>
+
+            <form class="account-form is-hidden" id="register-form">
+              <label>
+                Имя
+                <input type="text" name="name" placeholder="Как к вам обращаться" required>
+              </label>
+              <label>
+                Почта
+                <input type="email" name="email" placeholder="you@example.com" required>
+              </label>
+              <label>
+                Пароль
+                <input type="password" name="password" placeholder="Минимум 6 символов" required>
+              </label>
+              <button class="button button-primary" type="submit">Создать аккаунт</button>
+            </form>
+
+            <p class="form-status" id="auth-status" aria-live="polite"></p>
+          </div>
+
+          <div class="user-chat is-hidden" id="user-chat-panel">
+            <div class="user-chat-head">
+              <div>
+                <p class="eyebrow">Чат</p>
+                <h3>Диалог с администратором</h3>
+                <p class="user-chat-subtitle">Вы вошли как <strong id="user-name">Пользователь</strong></p>
+              </div>
+              <button class="button button-secondary" id="user-logout-button" type="button">Выйти</button>
+            </div>
+            <div class="chat-messages" id="user-chat-messages">
+              <div class="chat-empty">После входа здесь появится переписка с администратором.</div>
+            </div>
+            <form class="chat-form" id="user-chat-form">
+              <textarea name="text" rows="4" placeholder="Напишите сообщение администратору" required></textarea>
+              <button class="button button-primary" type="submit">Отправить</button>
+            </form>
+            <p class="form-status" id="chat-status" aria-live="polite"></p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="site-footer section">
+        <div class="footer-panel">
+          <div class="footer-copy">
+            <p class="eyebrow">Контакты</p>
+            <h2>Контакты для связи</h2>
+            <div class="footer-contacts">
+              <div class="footer-contact-item">
+                <span class="footer-contact-label">Email</span>
+                <button
+                  class="footer-link footer-copy-button"
+                  type="button"
+                  data-copy-email="sfsdfsdfsfsf00@list.ru"
+                  aria-label="Скопировать почту"
+                >
+                  <svg class="footer-inline-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M3 5.75A1.75 1.75 0 0 1 4.75 4h14.5A1.75 1.75 0 0 1 21 5.75v12.5A1.75 1.75 0 0 1 19.25 20H4.75A1.75 1.75 0 0 1 3 18.25V5.75Zm1.75-.25a.25.25 0 0 0-.159.443l6.83 5.629a.92.92 0 0 0 1.158 0l6.83-5.629a.25.25 0 0 0-.159-.443H4.75Zm14.75 2.022-5.964 4.916a2.42 2.42 0 0 1-3.072 0L4.5 7.522v10.728c0 .138.112.25.25.25h14.5a.25.25 0 0 0 .25-.25V7.522Z"/>
+                  </svg>
+                  <span>sfsdfsdfsfsf00@list.ru</span>
+                </button>
+              </div>
+              <div class="footer-contact-item">
+                <span class="footer-contact-label">Telegram</span>
+                <a class="footer-link" href="https://t.me/+4HaE9k-nPu0zOWE6" target="_blank" rel="noopener noreferrer">
+                  <svg class="footer-inline-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M21.7 4.1 18.5 19.2c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L5.9 12.9 1 11.4c-1.1-.3-1.1-1.1.2-1.6L20.3 2.4c.9-.3 1.7.2 1.4 1.7Z"/>
+                  </svg>
+                  <span>@help_student</span>
+                </a>
+              </div>
+              <div class="footer-contact-item">
+                <span class="footer-contact-label">VK</span>
+                <a class="footer-link" href="https://vk.com/kverty1999" target="_blank" rel="noopener noreferrer">
+                  <svg class="footer-inline-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12.785 17.927h1.432s.433-.047.654-.282c.204-.217.197-.624.197-.624s-.028-1.904.86-2.184c.876-.277 2 1.84 3.193 2.654.903.616 1.59.481 1.59.481l3.192-.045s1.67-.103.878-1.419c-.065-.108-.462-.973-2.378-2.752-2.005-1.862-1.736-1.561.678-4.779 1.47-1.959 2.059-3.154 1.875-3.666-.176-.489-1.262-.36-1.262-.36l-3.594.022s-.267-.036-.464.081c-.193.115-.317.383-.317.383s-.569 1.515-1.326 2.804c-1.597 2.72-2.236 2.865-2.497 2.696-.607-.393-.456-1.578-.456-2.42 0-2.63.399-3.726-.777-4.01-.39-.094-.678-.157-1.677-.167-1.283-.013-2.367.004-2.982.305-.409.2-.724.646-.531.672.239.031.78.147 1.065.535.37.502.356 1.63.356 1.63s.211 3.095-.493 3.479c-.484.264-1.149-.275-2.578-2.744-.732-1.265-1.285-2.662-1.285-2.662s-.106-.259-.297-.398c-.23-.168-.552-.222-.552-.222l-3.415.022s-.513.014-.7.236c-.167.198-.014.607-.014.607s2.673 6.25 5.699 9.397c2.777 2.887 5.929 2.698 5.929 2.698Z"/>
+                  </svg>
+                  <span>vk.com/kverty1999</span>
+                </a>
+              </div>
+            </div>
+            <p class="footer-copy-status" id="footer-copy-status" aria-live="polite"></p>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
