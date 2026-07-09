@@ -740,7 +740,7 @@ def create_server(settings: Settings | None = None, host: str | None = None, por
     app = Application(effective_settings)
     app.initialize()
     bind_host = host or "0.0.0.0"
-    bind_port = port if port is not None else int(os.getenv("PORT", "5000"))
+    bind_port = port if port is not None else int(os.getenv("PORT", "8000"))
     return ThreadingHTTPServer((bind_host, bind_port), create_handler(app))
 
 
